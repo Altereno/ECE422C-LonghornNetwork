@@ -1,8 +1,15 @@
 import java.util.*;
 import java.util.concurrent.*;
 
-// Main.java - Self-contained testing & grading with multiple built‑in test cases.
+/**
+ * Driver class. Contains testing and grading with multiple built-in test cases.
+ */
 public class Main {
+    /**
+     * Entry point used by the automated grader. Runs built-in test cases.
+     *
+     * @param args command-line arguments (ignored)
+     */
     public static void main(String[] args) {
         // Create a list of test cases.
         List<List<UniversityStudent>> testCases = new ArrayList<>();
@@ -32,7 +39,11 @@ public class Main {
         System.out.println("Average Score across all test cases: " + (overallScore / count));
     }
 
-    // Test Case 1: Two groups (Group 1 with four students having mutual preferences, Group 2 with a pair)
+    /**
+     * Test Case 1: Two groups (Group 1 with four students having mutual preferences, Group 2 with a pair)
+     *
+     * @return a list of UniversityStudent objects representing test data
+     */
     public static List<UniversityStudent> generateTestCase1() {
         List<UniversityStudent> students = new ArrayList<>();
 
@@ -67,8 +78,12 @@ public class Main {
         return students;
     }
 
-    // Test Case 2: Three students in which one has "DummyCompany" as a previous internship.
-    // This test case should yield a referral path when searching for "DummyCompany".
+    /**
+     * Test Case 2: Three students in which one has "DummyCompany" as a previous internship.
+     * This test case should yield a referral path when searching for "DummyCompany". 
+     * 
+     * @return a list of UniversityStudent objects representing test data
+     */
     public static List<UniversityStudent> generateTestCase2() {
         List<UniversityStudent> students = new ArrayList<>();
 
@@ -88,8 +103,12 @@ public class Main {
         return students;
     }
 
-    // Test Case 3: Three students where one has no roommate preferences.
-    // Two of them can be paired and one remains unpaired.
+    /**
+     * Test Case 3: Three students where one has no roommate preferences.
+     * Two of them can be paired and one remains unpaired.
+     *
+     * @return a list of UniversityStudent objects representing test data
+     */
     public static List<UniversityStudent> generateTestCase3() {
         List<UniversityStudent> students = new ArrayList<>();
 
@@ -113,6 +132,10 @@ public class Main {
      * Automated test suite for grading a given test case.
      * Accepts a list of UniversityStudent objects and a testCaseNumber (for output clarity).
      * Returns an integer score.
+     * 
+     * @param students       list of students that compose the test case
+     * @param testCaseNumber ordinal number used in output messages
+     * @return an integer score reflecting passed checks
      */
     public static int gradeLab(List<UniversityStudent> students, int testCaseNumber) {
         int score = 0;
