@@ -1,0 +1,94 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Student {
+  # name: String
+  # age: int
+  # gender: String
+  # year: int
+  # major: String
+  # gpa: double
+  # roommatePreferences: List<String>
+  # previousInternships: List<String>
+  + {abstract} calculateConnectionStrength(Student): int
+}
+
+class UniversityStudent extends Student {
+  - currentRoommate: UniversityStudent
+  + UniversityStudent(String, int, String, int, String, double, List<String>, List<String>)
+  + getRoommate(): UniversityStudent
+  + calculateConnectionStrength(Student): int
+}
+
+class Edge {
+  + neighbor: UniversityStudent
+  + weight: int
+  + Edge(UniversityStudent, int)
+}
+
+class StudentGraph {
+  - adj: Map<UniversityStudent, List<Edge>>
+  + StudentGraph(List<UniversityStudent>)
+  + getAllNodes(): Set<UniversityStudent>
+  + getNeighbors(UniversityStudent): List<Edge>
+  + displayGraph(): void
+}
+
+class GaleShapley {
+  + {static} assignRoommates(List<UniversityStudent>): void
+}
+
+class ReferralPathFinder {
+  + ReferralPathFinder(StudentGraph)
+  + findReferralPath(UniversityStudent, String): List<UniversityStudent>
+}
+
+class PodFormation {
+  + PodFormation(StudentGraph)
+  + formPods(int): void
+}
+
+class FriendRequestThread implements Runnable {
+  + FriendRequestThread(UniversityStudent, UniversityStudent)
+  + run(): void
+}
+
+class ChatThread implements Runnable {
+  + ChatThread(UniversityStudent, UniversityStudent, String)
+  + run(): void
+}
+
+class DataParser {
+  + {static} parseStudents(String): List<UniversityStudent>
+}
+
+class Main {
+  + {static} main(String[]): void
+  + {static} generateTestCase1(): List<UniversityStudent>
+  + {static} generateTestCase2(): List<UniversityStudent>
+  + {static} generateTestCase3(): List<UniversityStudent>
+  + {static} gradeLab(List<UniversityStudent>, int): int
+}
+
+Main ..> UniversityStudent : "creates"
+Main ..> DataParser : "uses"
+Main ..> StudentGraph : "creates"
+Main ..> GaleShapley : "uses"
+Main ..> ReferralPathFinder : "creates"
+Main ..> FriendRequestThread : "creates"
+Main ..> ChatThread : "creates"
+
+UniversityStudent o--> "0..1" UniversityStudent : "currentRoommate"
+
+StudentGraph *-- Edge
+StudentGraph o--> "*" UniversityStudent
+Edge --> "1" UniversityStudent
+
+GaleShapley ..> UniversityStudent : "uses"
+DataParser ..> UniversityStudent : "creates"
+ReferralPathFinder ..> StudentGraph : "uses"
+PodFormation ..> StudentGraph : "uses"
+FriendRequestThread ..> UniversityStudent : "uses"
+ChatThread ..> UniversityStudent : "uses"
+
+@enduml

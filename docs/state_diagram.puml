@@ -1,0 +1,50 @@
+@startuml
+title Longhorn Network - State Diagram
+
+[*] --> Idle
+
+Idle --> DataParsing
+DataParsing --> GraphConstruction
+
+GraphConstruction --> GraphReady
+GraphReady --> RoommateMatching
+GraphReady --> ReferralSearching
+GraphReady --> PodForming
+
+RoommateMatching --> PairingComplete
+
+ReferralSearching --> PathFound
+
+PodForming --> PodsFormed
+
+PairingComplete --> Interacting
+PathFound --> Interacting
+PodsFormed --> Interacting
+
+Interacting --> FriendChatOps
+
+FriendChatOps --> WaitingForCompletion
+WaitingForCompletion --> TasksComplete
+
+TasksComplete --> GradingPhase
+
+GradingPhase --> ScoreCalculated
+
+ScoreCalculated --> [*]
+
+!define UniversityStudent "UniversityStudent"
+
+state "Raw Data" as RawData
+state "Parsed Students" as ParsedStudents
+state "Chat Interaction" as ChatInteraction
+state "Friend Request" as FriendRequest
+state "Roommate Matching" as RoommateMatching
+state "Test Execution" as TestExecution
+
+RawData --> ParsedStudents : DataParser.parseStudents()
+ParsedStudents --> ChatInteraction : ChatThread.run()
+ParsedStudents --> FriendRequest : FriendRequestThread.run()
+ParsedStudents --> RoommateMatching : GaleShapley.assignRoommates()
+RoommateMatching --> TestExecution : Main.gradeLab()
+
+@enduml
