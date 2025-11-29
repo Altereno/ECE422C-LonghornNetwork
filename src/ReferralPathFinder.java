@@ -6,6 +6,7 @@ import java.util.*;
  * {@code targetCompany} in their previous internships.
  */
 public class ReferralPathFinder {
+    /** The student graph used for finding referral paths */
     private StudentGraph graph;
     /**
      * Create a finder bound to a {@link StudentGraph}.

@@ -7,6 +7,12 @@ import java.util.*;
  */
 public class GaleShapley {
     /**
+     * Private constructor to prevent instantiation of utility class.
+     */
+    private GaleShapley() {
+    }
+
+    /**
      * Assigns roommates for the supplied list of students.
      * 
      * @param students list of students to match into roommate pairs

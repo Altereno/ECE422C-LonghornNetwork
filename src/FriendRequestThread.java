@@ -6,8 +6,11 @@ import java.util.concurrent.Semaphore;
  * Implements {@code Runnable} for execution in a thread pool.
  */
 public class FriendRequestThread implements Runnable {
+    /** The student initiating the friend request */
     private UniversityStudent sender;
+    /** The student receiving the friend request */
     private UniversityStudent receiver;
+    /** Semaphore for thread-safe friend request output */
     private static final Semaphore sem = new Semaphore(1);
 
     /**

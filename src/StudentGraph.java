@@ -8,7 +8,9 @@ import java.util.*;
 public class StudentGraph {
 
     public class Edge {
+        /** The neighboring student in this edge */
         public UniversityStudent neighbor;
+        /** The weight of the connection between students */
         public int weight;
 
         /**
@@ -30,6 +32,7 @@ public class StudentGraph {
 
     }
 
+    /** Adjacency list representation of the student graph */
     private Map<UniversityStudent, List<Edge>> adj = new HashMap<>();
 
     /**

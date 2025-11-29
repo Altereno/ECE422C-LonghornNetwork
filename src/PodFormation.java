@@ -3,13 +3,16 @@
  * provided {@link StudentGraph} structure.
  */
 public class PodFormation {
+    /** The student graph used for pod formation */
+    private StudentGraph graph;
+
     /**
      * Construct a PodFormation instance bound to a StudentGraph.
      *
      * @param graph the student graph used to form pods and inspect relationships
      */
     public PodFormation(StudentGraph graph) {
-        // Constructor
+        this.graph = graph;
     }
 
     /**

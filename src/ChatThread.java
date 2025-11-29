@@ -5,9 +5,13 @@ import java.util.concurrent.Semaphore;
  * Implements {@code Runnable} for execution in a thread pool.
  */
 public class ChatThread implements Runnable {
+    /** The student sending the chat message */
     private UniversityStudent sender;
+    /** The student receiving the chat message */
     private UniversityStudent receiver;
+    /** The content of the chat message */
     String message;
+    /** Semaphore for thread-safe message output */
     private static final Semaphore sem = new Semaphore(1);
     /**
      * Constructs a ChatThread for a single chat message between two students.

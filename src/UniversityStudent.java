@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class UniversityStudent extends Student {
 
-    /* Current assigned roommate */
+    /** Current assigned roommate */
     private UniversityStudent currentRoommate;
 
     /**

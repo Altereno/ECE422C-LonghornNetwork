@@ -6,6 +6,7 @@ import java.util.*;
  * list of {@link UniversityStudent} objects.
  */
 public class DataParser {
+    /** Array of expected field names for student records */
     private static final String[] recordKeys = {
         "Name",
         "Age",
