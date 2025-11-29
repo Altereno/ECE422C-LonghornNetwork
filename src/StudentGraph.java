@@ -22,6 +22,12 @@ public class StudentGraph {
             this.neighbor = neighbor;
             this.weight = weight;
         }
+
+        @Override
+        public String toString() {
+            return "(" + neighbor.name + ", " + weight + ")";
+        }
+
     }
 
     private Map<UniversityStudent, List<Edge>> adj = new HashMap<>();
@@ -32,6 +38,21 @@ public class StudentGraph {
      * @param students list of students
      */
     public StudentGraph(List<UniversityStudent> students) {
+        for(UniversityStudent s : students) {
+            adj.put(s, new ArrayList<>());
+        }
+
+        for(int i = 0; i < students.size(); i++) {
+            for(int j = i + 1; j < students.size(); j++) {
+                UniversityStudent s1 = students.get(i);
+                UniversityStudent s2 = students.get(j);
+                int weight = s1.calculateConnectionStrength(s2);
+                if(weight > 0) {
+                    adj.get(s1).add(new Edge(s2, weight));
+                    adj.get(s2).add(new Edge(s1, weight));
+                }
+            }
+        }
     }
 
     /**
@@ -50,12 +71,16 @@ public class StudentGraph {
      * @return a list of Edge objects
      */
     public List<Edge> getNeighbors(UniversityStudent student) {
-        return new ArrayList<>(adj.getOrDefault(student, Collections.emptyList()));
+        return adj.get(student);
     }
 
     /**
      * Prints the graph.
      */
     public void displayGraph() {
+        System.out.println("\nStudent Graph:");
+        for(UniversityStudent s : adj.keySet()) {
+            System.out.println(s.name + " -> " + adj.get(s));
+        }
     }
 }

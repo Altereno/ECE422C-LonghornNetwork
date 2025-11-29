@@ -1,8 +1,14 @@
+import java.util.concurrent.Semaphore;
+
 /**
  * ChatThread models a chat interaction between two UniversityStudent instances.
  * Implements {@code Runnable} for execution in a thread pool.
  */
 public class ChatThread implements Runnable {
+    private UniversityStudent sender;
+    private UniversityStudent receiver;
+    String message;
+    private static final Semaphore sem = new Semaphore(1);
     /**
      * Constructs a ChatThread for a single chat message between two students.
      *
@@ -11,7 +17,9 @@ public class ChatThread implements Runnable {
      * @param message  the chat message text
      */
     public ChatThread(UniversityStudent sender, UniversityStudent receiver, String message) {
-        // Constructor
+        this.sender = sender;
+        this.receiver = receiver;
+        this.message = message;
     }
 
     /**
@@ -19,6 +27,13 @@ public class ChatThread implements Runnable {
      */
     @Override
     public void run() {
-        // Method signature only
-    }
+        try {
+            sem.acquire();
+            System.out.println("Chat (Thread-safe): " + sender.name + " to " + receiver.name + ": " + message);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Chat interrupted: " + e.getMessage());
+        } finally {
+            sem.release();
+        }    }
 }

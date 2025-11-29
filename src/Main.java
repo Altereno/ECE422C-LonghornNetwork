@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -11,6 +12,12 @@ public class Main {
      * @param args command-line arguments (ignored)
      */
     public static void main(String[] args) {
+        // remove later
+        // test();
+        // if(true) {
+        //     return;
+        // }
+
         // Create a list of test cases.
         List<List<UniversityStudent>> testCases = new ArrayList<>();
         testCases.add(generateTestCase1());
@@ -240,6 +247,20 @@ public class Main {
 
         System.out.println("\nTotal Score for Test Case " + testCaseNumber + ": " + score);
         return score;
+    }
+
+    public static void test() {
+        // Remove later
+        List<UniversityStudent> students;
+        try {
+            students = DataParser.parseStudents("testing/testing_checkpointone/inputs/normal_5.txt");
+            for(UniversityStudent s : students) {
+                System.out.println(s);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
     }
 }
 

@@ -42,16 +42,59 @@ public class UniversityStudent extends Student {
         return currentRoommate;
     }
 
+    public void setRoommate(UniversityStudent roommate) {
+        currentRoommate = roommate;
+    }
+
     /**
      * Compute an integer representing connection strength between this student
      * and another student.
+     * 
+     * Roommate: Add 4 if they are roommates.
+     * Shared Internships: Add 3 for each shared internship.
+     * Same Major: Add 2 if they share the same major.
+     * Same Age: Add 1 if they are the same age.
      *
      * @param other the other student to compare against
      * @return integer weight representing connection strength
      */
     @Override
     public int calculateConnectionStrength(Student other) {
-        return 0;
+        int connectionStrength = 0;
+
+        if(other instanceof UniversityStudent) {
+            UniversityStudent o = (UniversityStudent) other;
+            if(this.currentRoommate != null && this.currentRoommate.equals(o)) {
+                connectionStrength += 4;
+            }
+
+            for(String internship : previousInternships) {
+                if(o.previousInternships.contains(internship)) {
+                    connectionStrength += 3;
+                }
+            }
+
+            if(this.major.equals(o.major)) {
+                connectionStrength += 2;
+            }
+
+            if(this.age == o.age) {
+                connectionStrength += 1;
+            }
+        }
+        
+        return connectionStrength;
+    }
+
+    /**
+     * Returns a string representation of this UniversityStudent.
+     *
+     * @return a formatted string with all student attributes
+     */
+    @Override
+    public String toString() {
+        return String.format("UniversityStudent{name='%s', age=%d, gender='%s', year=%d, major='%s', GPA=%.1f, roommatePreferences=%s, previousInternships=%s}",
+                name, age, gender, year, major, gpa, roommatePreferences, previousInternships);
     }
 }
 
