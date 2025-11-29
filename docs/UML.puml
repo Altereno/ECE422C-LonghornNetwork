@@ -17,6 +17,7 @@ class UniversityStudent extends Student {
   - currentRoommate: UniversityStudent
   + UniversityStudent(String, int, String, int, String, double, List<String>, List<String>)
   + getRoommate(): UniversityStudent
+  + setRoomate(Roommate: UniversityStudent): void
   + calculateConnectionStrength(Student): int
 }
 
@@ -35,31 +36,43 @@ class StudentGraph {
 }
 
 class GaleShapley {
+  - GaleShapley()
   + {static} assignRoommates(List<UniversityStudent>): void
 }
 
 class ReferralPathFinder {
+  - graph: StudentGraph
   + ReferralPathFinder(StudentGraph)
   + findReferralPath(UniversityStudent, String): List<UniversityStudent>
 }
 
 class PodFormation {
+  - graph: StudentGraph
   + PodFormation(StudentGraph)
   + formPods(int): void
 }
 
 class FriendRequestThread implements Runnable {
+  - sender: UniversityStudent
+  - receiver: UniversityStudent
+  - {static} sem: Semaphore
   + FriendRequestThread(UniversityStudent, UniversityStudent)
   + run(): void
 }
 
 class ChatThread implements Runnable {
+  - sender: UniversityStudent
+  - receiver: UniversityStudent
+  - message: String
+  - {static} sem: Semaphore
   + ChatThread(UniversityStudent, UniversityStudent, String)
   + run(): void
 }
 
 class DataParser {
+  - {static} recordKeys: String[]
   + {static} parseStudents(String): List<UniversityStudent>
+  - {static} parseCommaSeparatedString(String): ArrayList<String>
 }
 
 class Main {
