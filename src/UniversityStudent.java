@@ -42,6 +42,11 @@ public class UniversityStudent extends Student {
         return currentRoommate;
     }
 
+    /**
+     * Sets the roommate for this student.
+     *
+     * @param roommate the {@link UniversityStudent} to assign as this student's roommate
+     */
     public void setRoommate(UniversityStudent roommate) {
         currentRoommate = roommate;
     }

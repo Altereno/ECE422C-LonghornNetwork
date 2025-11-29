@@ -120,6 +120,13 @@ public class DataParser {
         return students;
     }
 
+    /**
+     * Parses a comma-separated string into a list of trimmed strings.
+     * Handles the special case where the input is "None" by returning an empty list.
+     *
+     * @param in the comma-separated string to parse
+     * @return an ArrayList of trimmed string values, or an empty list if input is "None"
+     */
     private static ArrayList<String> parseCommaSeparatedString(String in) {
         ArrayList<String> stringAsList = new ArrayList<>();
 
