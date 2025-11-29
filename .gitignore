@@ -1,2 +1,3 @@
 docs/JavaDocs/**
 *.class
+.DS_Store
