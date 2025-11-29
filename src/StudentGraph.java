@@ -7,6 +7,9 @@ import java.util.*;
  */
 public class StudentGraph {
 
+    /**
+     * Represents a weighted edge in the student graph connecting two students.
+     */
     public class Edge {
         /** The neighboring student in this edge */
         public UniversityStudent neighbor;
