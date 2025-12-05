@@ -9,6 +9,10 @@ public class UniversityStudent extends Student {
     /** Current assigned roommate */
     private UniversityStudent currentRoommate;
 
+    // Added fields for friend requests and chat history
+    private List<String> friendRequests;
+    private List<String> chatHistory;
+
     /**
      * Create a {@code UniversityStudent}.
      *
@@ -31,6 +35,17 @@ public class UniversityStudent extends Student {
         this.gpa = gpa;
         this.roommatePreferences = roommatePreferences == null ? new ArrayList<>() : new ArrayList<>(roommatePreferences);
         this.previousInternships = previousInternships == null ? new ArrayList<>() : new ArrayList<>(previousInternships);
+        this.friendRequests = new ArrayList<>();
+        this.chatHistory = new ArrayList<>();
+    }
+
+    /**
+     * Returns the name of the student
+     * 
+     * @return the {@link UniversityStudent} name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -100,6 +115,42 @@ public class UniversityStudent extends Student {
     public String toString() {
         return String.format("UniversityStudent{name='%s', age=%d, gender='%s', year=%d, major='%s', GPA=%.1f, roommatePreferences=%s, previousInternships=%s}",
                 name, age, gender, year, major, gpa, roommatePreferences, previousInternships);
+    }
+
+    /**
+     * Returns a list of friend requests for this student.
+     *
+     * @return list of friend requests
+     */
+    public List<String> getFriendRequests() {
+        return friendRequests;
+    }
+
+    /**
+     * adds a friend request to history
+     * 
+     * @param request name of student
+     */
+    public void addFriendRequest(String request) {
+        friendRequests.add(request);
+    }
+
+    /**
+     * Returns a list of chats for this student.
+     *
+     * @return list of chats
+     */
+    public List<String> getChatHistory() {
+        return chatHistory;
+    }
+
+    /**
+     * adds a message to history
+     * 
+     * @param message message contents
+     */
+    public void addChatMessage(String message) {
+        chatHistory.add(message);
     }
 }
 

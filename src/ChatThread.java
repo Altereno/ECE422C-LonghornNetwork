@@ -34,6 +34,8 @@ public class ChatThread implements Runnable {
         try {
             sem.acquire();
             System.out.println("Chat (Thread-safe): " + sender.name + " to " + receiver.name + ": " + message);
+            sender.addChatMessage("To " + receiver.name + ": " + message);
+            receiver.addChatMessage("From " + sender.name + ": " + message);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.err.println("Chat interrupted: " + e.getMessage());

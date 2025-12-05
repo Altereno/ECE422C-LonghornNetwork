@@ -32,6 +32,7 @@ public class FriendRequestThread implements Runnable {
         try {
             sem.acquire();
             System.out.println("FriendRequest (Thread-safe): " + sender.name + " sent a friend request to " + receiver.name);
+            receiver.addFriendRequest(sender.name);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.err.println("FriendRequest interrupted: " + e.getMessage());
