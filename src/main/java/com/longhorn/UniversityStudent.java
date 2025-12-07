@@ -1,4 +1,4 @@
-package main.java.com.longhorn;
+package com.longhorn;
 import java.util.*;
 
 /**
