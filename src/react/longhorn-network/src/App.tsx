@@ -27,7 +27,7 @@ function App() {
       setLogs(prev => [...prev, `> Loaded ${data.nodes.length} students.`]);
     } catch (e) {
       console.log(e);
-      setLogs(prev => [...prev, `> ERROR: Could not connect to Java Server. Is it running?`]);
+      setLogs(prev => [...prev, `> ERROR: Could not connect to server.`]);
     }
   };
 
@@ -62,11 +62,11 @@ function App() {
   return (
     <div className="container">
       <div className="header">
-        <h1 style={{color: '#BF5700'}}>Longhorn Network Lab (Spring + React)</h1>
+        <h1 style={{color: '#BF5700'}}>Longhorn Network Lab</h1>
       </div>
 
       <div className="tab-nav">
-        {["Load Data", "Student Graph", "Details"].map((t, i) => (
+        {["Load Data", "Student Graph", "Friend Requests & Chat"].map((t, i) => (
           <button key={i} className={`tab-btn ${activeTab === i ? 'active' : ''}`} onClick={() => setActiveTab(i)}>
             {t}
           </button>
@@ -99,18 +99,18 @@ function App() {
           <div className="panel">
             <div className="sidebar">
               <h3>Graph Controls</h3>
-              <button className="btn" onClick={() => loadData(testCase)}>Refresh Graph</button>
+              <button className="btn" onClick={() => loadData(testCase)}>Render</button>
               <hr/>
-              <button className="btn" onClick={assignRoommates}>Run Roommate Algo</button>
+              <button className="btn" onClick={assignRoommates}>Assign & Show Roomates</button>
               <hr/>
-              <label>Start Node:</label>
+              <label>Start Student: </label>
               <select onChange={(e) => setSelectedStudent(e.target.value)} value={selectedStudent}>
                 <option value="">Select...</option>
                 {graphData.nodes.map(n => <option key={n.id} value={n.id}>{n.id}</option>)}
               </select>
-              <label>Target Company:</label>
+              <label>Target Company: </label>
               <input value={targetCo} onChange={(e) => setTargetCo(e.target.value)} />
-              <button className="btn" onClick={findPath} style={{marginTop:'10px'}}>Find Path</button>
+              <button className="btn" onClick={findPath} style={{marginTop:'10px'}}>Find & Visualize Path</button>
             </div>
             <div className="graph-area">
               <GraphVisualizer data={graphData} path={path} />
@@ -122,7 +122,7 @@ function App() {
         {activeTab === 2 && (
           <div className="panel">
              <div className="sidebar">
-              <h3>Select Student</h3>
+              <h3>Inspect Student Details: </h3>
               <select onChange={(e) => fetchDetails(e.target.value)} value={selectedStudent}>
                 <option value="">Select...</option>
                 {graphData.nodes.map(n => <option key={n.id} value={n.id}>{n.id}</option>)}
@@ -137,7 +137,7 @@ function App() {
                    <h4>Chat History:</h4>
                    <pre style={{background:'#eee', padding:'10px'}}>{studentDetails.chats && studentDetails.chats.length ? studentDetails.chats.join("\n") : "None"}</pre>
                 </div>
-              ) : <p>Select a student to view live data from server.</p>}
+              ) : <p>Select a student.</p>}
             </div>
           </div>
         )}
